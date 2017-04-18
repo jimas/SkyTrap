@@ -1,0 +1,67 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-3.dtd">
+<html lang="zh-CN" class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>publish task</title>
+<meta charset="utf-8" />
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport" />
+<div th:include="common/city/citycss :: citycss" th:remove="tag" />
+</head>
+<body>
+	<div th:include="common/header :: header" th:remove="tag" />
+
+	<form role="form">
+		<div class="form-group">
+			<label for="address">所在地区</label>
+			<div class="bs-chinese-region flat dropdown" data-submit-type="id"
+				data-min-level="1" data-max-level="3">
+				<input type="text" class="form-control" name="address" id="address"
+					placeholder="选择你的地区" data-toggle="dropdown" readonly="" value="" />
+				<div class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+					<div>
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active"><a href="#province"
+								data-next="city" role="tab" data-toggle="tab">省份</a></li>
+							<li role="presentation"><a href="#city" data-next="district"
+								role="tab" data-toggle="tab">城市</a></li>
+							<li role="presentation"><a href="#district"
+								data-next="street" role="tab" data-toggle="tab">县区</a></li>
+						</ul>
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="province">--</div>
+							<div role="tabpanel" class="tab-pane" id="city">--</div>
+							<div role="tabpanel" class="tab-pane" id="district">--</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="addressinfo">详细地址</label> <input type="text"
+				class="form-control" id="addressinfo" placeholder="请输入详细地址" />
+		</div>
+		<div class="form-group">
+			<label for="name">选择补漏类型</label> <select class="form-control">
+				<option>屋顶漏水</option>
+				<option>阳台漏水</option>
+				<option>卫生间漏水</option>
+				<option>其他</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="linkman">联系人</label> <input type="text"
+				class="form-control" id="linkman" placeholder="请输入联系人姓名 如：李先生" />
+		</div>
+		<div class="form-group">
+			<label for="mobile">联系人手机号码</label> <input type="text"
+				class="form-control" id="mobile" placeholder="请输入联系人手机号码" />
+		</div>
+		<button type="submit" class="btn btn-default">提交</button>
+	</form>
+	<div th:include="common/city/cityjs :: cityjs" th:remove="tag" />
+
+</body>
+
+</html>

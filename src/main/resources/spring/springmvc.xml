@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://www.springframework.org/schema/context  
+        http://www.springframework.org/schema/context/spring-context.xsd  
+        http://www.springframework.org/schema/mvc  
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<context:component-scan base-package="com.jimas.weixin.skytrap" />
+
+	<mvc:annotation-driven />
+
+	<!-- 使用thymeleaf解析 -->
+	<bean id="templateResolver"
+		class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+		<property name="cacheable" value="false" />
+	</bean>
+
+	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+	</bean>
+    <bean id="thymeleafResolver"  class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+         <property name="templateEngine" ref="templateEngine" />
+         <property name="characterEncoding" value="UTF-8"/>
+         <property name="order" value="1"></property>
+    </bean>
+	<!-- 允许对静态资源文件的访问 -->
+	<mvc:default-servlet-handler />
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"></mvc:mapping>
+			<mvc:exclude-mapping path="/loginout" />
+			<mvc:exclude-mapping path="/login" />
+			<mvc:exclude-mapping path="/favicon.ico" />
+			<mvc:exclude-mapping path="/static/**" />
+			<bean name="resultHandlerInterceptor"
+				class="com.jimas.weixin.skytrap.interceptor.AuthActionHandlerInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	
+<!-- 	<bean name="simpleMappingExceptionResolver" -->
+<!-- 		class="com.jimas.weixin.skytrap.interceptor.MySimpleMappingExceptionResolver"> -->
+<!-- 		<property name="defaultErrorView"> -->
+<!-- 			<value>error</value> -->
+<!-- 		</property> -->
+<!-- 		<property name="defaultStatusCode"> -->
+<!-- 			<value>500</value> -->
+<!-- 		</property> -->
+<!-- 		<property name="warnLogCategory"> -->
+<!-- 			<value>error</value> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+
+	<!-- 让springmvc支持文件上传 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxInMemorySize" value="2048"></property>
+		<property name="maxUploadSize" value="1000000000" />
+		<property name="uploadTempDir" value="/WEB-INF/uploadtemp"></property>
+	</bean>
+
+</beans>
