@@ -53,14 +53,8 @@ public class TrapTaskService implements TrapTaskApi {
         TrapTaskReq params = pageReq.getParams();
         if(!StringUtils.isEmpty(params)){
             Criteria criteria = example.createCriteria();
-            if(!StringUtils.isEmpty(params.getProvince())){
-                criteria.andProvinceEqualTo(params.getProvince());
-            }
-            if(!StringUtils.isEmpty(params.getCity())){
-                criteria.andCityEqualTo(params.getCity());
-            }
-            if(!StringUtils.isEmpty(params.getDistrict())){
-                criteria.andDistrictEqualTo(params.getDistrict());
+            if(!StringUtils.isEmpty(params.getAddress())){
+                criteria.andAddressEqualTo(params.getAddress());
             }
             if(!StringUtils.isEmpty(params.getLinkman())){
                 criteria.andLinkmanEqualTo(params.getLinkman());

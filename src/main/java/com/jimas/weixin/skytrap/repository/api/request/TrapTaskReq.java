@@ -6,45 +6,35 @@ public class TrapTaskReq extends BaseObject{
 
     private static final long serialVersionUID = 5635921095533945007L;
 
-    private String province;
+    //地址code
+    private String address;
 
-    //
-    private String city;
+    //街道信息
+    private String street;
 
-    //
-    private String district;
-
-    //
+    //补漏类型
     private String traptype;
 
-    //
+    //联系人
     private String linkman;
 
-    //
+    //联系人手机号
     private String mobile;
 
-    public String getProvince() {
-        return province;
+    public String getAddress() {
+        return address;
     }
 
-    public void setProvince(String province) {
-        this.province = province;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getCity() {
-        return city;
+    public String getStreet() {
+        return street;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     public String getTraptype() {
@@ -70,6 +60,6 @@ public class TrapTaskReq extends BaseObject{
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
-    
+
     
 }

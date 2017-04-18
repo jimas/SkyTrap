@@ -6,28 +6,22 @@ public class TrapTask implements Serializable {
     //
     private Integer id;
 
-    //
-    private String province;
+    //地址code
+    private String address;
 
-    //
-    private String city;
-
-    //
-    private String district;
-
-    //
+    //街道信息
     private String street;
 
-    //
+    //详细地址信息
     private String addressinfo;
 
-    //
+    //补漏类型
     private String traptype;
 
-    //
+    //联系人
     private String linkman;
 
-    //
+    //联系人手机号
     private String mobile;
 
     private static final long serialVersionUID = 1L;
@@ -40,28 +34,12 @@ public class TrapTask implements Serializable {
         this.id = id;
     }
 
-    public String getProvince() {
-        return province;
+    public String getAddress() {
+        return address;
     }
 
-    public void setProvince(String province) {
-        this.province = province == null ? null : province.trim();
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city == null ? null : city.trim();
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district == null ? null : district.trim();
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
     }
 
     public String getStreet() {
@@ -111,9 +89,7 @@ public class TrapTask implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", province=").append(province);
-        sb.append(", city=").append(city);
-        sb.append(", district=").append(district);
+        sb.append(", address=").append(address);
         sb.append(", street=").append(street);
         sb.append(", addressinfo=").append(addressinfo);
         sb.append(", traptype=").append(traptype);
