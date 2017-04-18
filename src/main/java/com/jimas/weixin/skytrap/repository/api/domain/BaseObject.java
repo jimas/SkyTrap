@@ -1,4 +1,4 @@
-package com.jimas.weixin.skytrap.repository.domain;
+package com.jimas.weixin.skytrap.repository.api.domain;
 
 import java.io.Serializable;
 

@@ -1,6 +1,6 @@
 package com.jimas.weixin.skytrap.repository.api.request;
 
-import com.jimas.weixin.skytrap.repository.domain.BaseObject;
+import com.jimas.weixin.skytrap.repository.api.domain.BaseObject;
 
 public class TrapTaskReq extends BaseObject{
 
