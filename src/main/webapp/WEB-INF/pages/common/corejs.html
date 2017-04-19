@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="corejs">
-	<!-- JAVASCRIPT
+	<!-- JAVASCRIPT 
 	     ================================================== -->
-    <script src="static/js/jquery.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
-    <script src="static/js/animatescroll.js"></script>
-    <script src="static/js/scripts.js"></script>
-    <script src="static/js/retina.min.js"></script>
+    <script th:src="@{/static/js/jquery.js}"></script>
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+    <script th:src="@{/static/js/animatescroll.js}" ></script>
+    <script th:src="@{/static/js/scripts.js}"></script>
+    <script th:src="@{/static/js/retina.min.js}"></script>
 </div>
 </html>

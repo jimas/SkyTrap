@@ -13,7 +13,9 @@
 	<context:component-scan base-package="com.jimas.weixin.skytrap" />
 
 	<mvc:annotation-driven />
-
+	<!-- 默认servlet -->  
+	<mvc:default-servlet-handler /> 
+	
 	<!-- 使用thymeleaf解析 -->
 	<bean id="templateResolver"
 		class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">

@@ -11,65 +11,33 @@
 </head>
 <body>
 	<div th:include="common/header :: header" th:remove="tag" />
-	<!-- 	<table class="table table-bordered"> -->
-	<!-- 		<caption>边框表格布局</caption> -->
-	<!-- 		<thead> -->
-	<!-- 			<tr> -->
-	<!-- 				<th>名称</th> -->
-	<!-- 				<th>城市</th> -->
-	<!-- 				<th>邮编</th> -->
-	<!-- 			</tr> -->
-	<!-- 		</thead> -->
-	<!-- 		<tbody> -->
-	<!-- 			<tr> -->
-	<!-- 				<td>Tanmay</td> -->
-	<!-- 				<td>Bangalore</td> -->
-	<!-- 				<td>560001</td> -->
-	<!-- 			</tr> -->
-	<!-- 			<tr> -->
-	<!-- 				<td>Sachin</td> -->
-	<!-- 				<td>Mumbai</td> -->
-	<!-- 				<td>400003</td> -->
-	<!-- 			</tr> -->
-	<!-- 			<tr> -->
-	<!-- 				<td>Uma</td> -->
-	<!-- 				<td>Pune</td> -->
-	<!-- 				<td>411027</td> -->
-	<!-- 			</tr> -->
-	<!-- 		</tbody> -->
-	<!-- 	</table> -->
-	<form role="form">
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="name">所在地区</label> <select class="form-control"> -->
-<!-- 				<option>中国</option> -->
-<!-- 			</select>  -->
-<!-- 		</div> -->
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="name">所在省市区</label> <select class="form-control"> -->
-<!-- 				<option>上海</option> -->
-<!-- 				<option>安徽</option> -->
-<!-- 				<option>北京</option> -->
-<!-- 				<option>重庆</option> -->
-<!-- 				<option>广东</option> -->
-<!-- 			</select>  -->
-<!-- 		</div> -->
-		<div id="city">   
-		    <select class="prov"></select>    
-		    <select class="city" disabled="disabled"></select>   
-		    <select class="dist" disabled="disabled"></select>   
-		</div>  
-	</form>
+		<table class="table table-bordered">
+			<caption>边框表格布局</caption>
+			<thead>
+				<tr>
+					<th>名称</th>
+					<th>城市</th>
+					<th>邮编</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Tanmay</td>
+					<td>Bangalore</td>
+					<td>560001</td>
+				</tr>
+				<tr>
+					<td>Sachin</td>
+					<td>Mumbai</td>
+					<td>400003</td>
+				</tr>
+				<tr>
+					<td>Uma</td>
+					<td>Pune</td>
+					<td>411027</td>
+				</tr>
+			</tbody>
+		</table>
 	<div th:include="common/corejs :: corejs" th:remove="tag" />
-<script type="text/javascript" src="static/js/city/cityselect.js"></script> 
-	<script type="text/javascript">  
-	$(document).ready(function() {  
-	    $("#city").citySelect({  
-	        prov: "陕西",  
-	        city: "西安",  
-	        dist: "雁塔区",  
-	        nodata: "none"  
-	    })
-	});
-	</script>  
 </body>
 </html>

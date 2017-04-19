@@ -1,8 +1,7 @@
 $(document).ready(
 				function() {
-					$.getJSON('static/json/areas.json',
+					$.getJSON('/static/json/areas.json',
 							function(data) {
-
 								/**重定义数据结构**/
 								/**
 								 * id 键,name 名字,level 层级,parentId 父级

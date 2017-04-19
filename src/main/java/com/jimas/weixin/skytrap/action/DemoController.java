@@ -12,13 +12,18 @@ public class DemoController extends BaseController{
 
     
     @RequestMapping("/demo")
-    public String index(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
+    public String demo(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
         
         return "demo";
     }
     @RequestMapping("/city")
     public String city(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
         
-        return "city";
+        return "task";
+    }
+    @RequestMapping({"","/index"})
+    public String index(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
+        
+        return "index";
     }
 }

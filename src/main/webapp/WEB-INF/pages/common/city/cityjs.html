@@ -6,8 +6,8 @@
 	<!-- core js -->
 	<div th:include="common/corejs :: corejs" th:remove="tag" />
 	
-	<script src="static/js/city/bootstrap-chinese-region.js"></script>
-	<script src="static/js/city/cityselect.js"></script>
+	<script th:src="@{/static/js/city/bootstrap-chinese-region.js}"></script>
+	<script th:src="@{/static/js/city/cityselect.js}" ></script>
 
 </div>
 </html>

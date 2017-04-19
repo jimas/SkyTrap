@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="citycss">
 	<div th:include="common/corecss :: corecss" th:remove="tag" />
-	<link href="static/css/bootstrap-chinese-region.css" rel="stylesheet" />
+	<link th:href="@{/static/css/bootstrap-chinese-region.css}"  rel="stylesheet" />
 
 </div>
 </html>
