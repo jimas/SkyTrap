@@ -23,7 +23,7 @@ Utils = {
 			// $('.modal-backdrop:eq(0)').remove();
 		} else {
 			var id = 'alert' + r;
-			var alert = '<div class="modal fade bs-example-modal-sm '
+			var alert = '<div class="modal bs-example-modal-sm '
 					+ id
 					+ '">'
 					+ '<div class="modal-dialog modal-sm">'

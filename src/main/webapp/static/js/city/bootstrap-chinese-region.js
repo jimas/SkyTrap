@@ -153,6 +153,7 @@
         $navbarButton.children('a').tab('show');
         this.$input.val('');
         this.$tabContent.children().find('a').removeClass('current');
+        debugger
         for (var i = 0; i < this.areas.length; i++) {
             this.$input.val(this.$input.val()+this.areas[i].name+' ');
             this.$tabContent.find('a[data-id='+this.areas[i].id+']').addClass('current');
