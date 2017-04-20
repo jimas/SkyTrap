@@ -16,11 +16,6 @@ public class DemoController extends BaseController{
         
         return "demo";
     }
-    @RequestMapping("/city")
-    public String city(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
-        
-        return "task";
-    }
     @RequestMapping({"","/index"})
     public String index(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
         

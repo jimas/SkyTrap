@@ -3,16 +3,12 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>publish task</title>
-<meta charset="utf-8" />
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport" />
 <div th:include="common/city/citycss :: citycss" th:remove="tag" />
 </head>
 <body>
 	<div th:include="common/header :: header" th:remove="tag" />
 
-	<form role="form">
+	<form role="form" id="trapTask">
 		<div class="form-group">
 			<label for="address">所在地区</label>
 			<div class="bs-chinese-region flat dropdown" data-submit-type="id"
@@ -40,28 +36,55 @@
 		</div>
 		<div class="form-group">
 			<label for="addressinfo">详细地址</label> <input type="text"
-				class="form-control" name="addressinfo" id="addressinfo" placeholder="请输入详细地址" />
+				class="form-control" name="addressinfo" id="addressinfo"
+				placeholder="请输入详细地址" />
 		</div>
 		<div class="form-group">
-			<label for="trapType">选择补漏类型</label> <select name="trapType" id="trapType" class="form-control">
-				<option>屋顶漏水</option>
-				<option>阳台漏水</option>
-				<option>卫生间漏水</option>
-				<option>其他</option>
+			<label for="traptype">选择补漏类型</label> <select name="traptype"
+				id="traptype" class="form-control">
+				<option value="屋顶漏水">屋顶漏水</option>
+				<option value="阳台漏水">阳台漏水</option>
+				<option value="卫生间漏水">卫生间漏水</option>
+				<option value="其他">其他</option>
 			</select>
 		</div>
 		<div class="form-group">
 			<label for="linkman">联系人</label> <input type="text"
-				class="form-control" id="linkman" name="linkman" placeholder="请输入联系人姓名 如：李先生" />
+				class="form-control" id="linkman" name="linkman"
+				placeholder="请输入联系人姓名 如：李先生" />
 		</div>
 		<div class="form-group">
 			<label for="mobile">联系人手机号码</label> <input type="text"
-				class="form-control" name="mobile" id="mobile" placeholder="请输入联系人手机号码" />
+				class="form-control" name="mobile" id="mobile"
+				placeholder="请输入联系人手机号码" />
 		</div>
-		<button type="submit" class="btn btn-default">提交</button>
+		<button id="commit" type="button" class="btn btn-default">提交</button>
 	</form>
 	<div th:include="common/city/cityjs :: cityjs" th:remove="tag" />
 
+	<script th:inline="javascript">
+		
+		$(function(){
+			/*首尾增加这样的注释一样的声明，由于thymeleaf是采用xml解析的方式进行替换的，
+			 *所以javascript中<![CDATA[&]]>这样的xml实体转义字符会被识别为转义，所以会出sax解析错误
+			 */
+			$("#commit").click(function(){
+				var param = $('#trapTask').serialize();
+				console.log(param);
+				$.post([[@{/}]]+'task/addTask',param,function(rs){
+					/*<![CDATA[*/
+					if(rs && rs.status==200){
+					/*]]>*/
+						Utils.alert('保存成功');
+					}else{
+						Utils.alert('保存失败');
+					}
+					
+				});
+			});
+		})
+	
+	</script>
 </body>
 
 </html>

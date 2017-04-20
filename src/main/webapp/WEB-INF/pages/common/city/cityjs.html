@@ -5,9 +5,28 @@
 
 	<!-- core js -->
 	<div th:include="common/corejs :: corejs" th:remove="tag" />
-	
 	<script th:src="@{/static/js/city/bootstrap-chinese-region.js}"></script>
-	<script th:src="@{/static/js/city/cityselect.js}" ></script>
 
+	<script th:inline="javascript">
+		$.getJSON([[@{/}]]+'static/json/areas.json', function(data) {
+			/**重定义数据结构**/
+			/**
+			 * id 键,name 名字,level 层级,parentId 父级
+			 */
+			/*<![CDATA[*/
+			for (var i = 0; i < data.length; i++) {
+				/*]]>*/
+				var area = {
+					id : data[i].id,
+					name : data[i].cname,
+					level : data[i].level,
+					parentId : data[i].upid
+				};
+				data[i] = area;
+			}
+
+			$('.bs-chinese-region').chineseRegion('source', data);//导入数据并实例化
+		});
+	</script>
 </div>
 </html>
