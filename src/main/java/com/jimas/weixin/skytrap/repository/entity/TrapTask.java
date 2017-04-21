@@ -6,8 +6,14 @@ public class TrapTask implements Serializable {
     //
     private Integer id;
 
-    //地址code
-    private String address;
+    //省份
+    private String province;
+
+    //城市
+    private String city;
+
+    //区
+    private String district;
 
     //街道信息
     private String street;
@@ -24,6 +30,9 @@ public class TrapTask implements Serializable {
     //联系人手机号
     private String mobile;
 
+    //
+    private String column10;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -34,12 +43,28 @@ public class TrapTask implements Serializable {
         this.id = id;
     }
 
-    public String getAddress() {
-        return address;
+    public String getProvince() {
+        return province;
     }
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+    public void setProvince(String province) {
+        this.province = province == null ? null : province.trim();
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city == null ? null : city.trim();
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district == null ? null : district.trim();
     }
 
     public String getStreet() {
@@ -82,6 +107,14 @@ public class TrapTask implements Serializable {
         this.mobile = mobile == null ? null : mobile.trim();
     }
 
+    public String getColumn10() {
+        return column10;
+    }
+
+    public void setColumn10(String column10) {
+        this.column10 = column10 == null ? null : column10.trim();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -89,12 +122,15 @@ public class TrapTask implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", address=").append(address);
+        sb.append(", province=").append(province);
+        sb.append(", city=").append(city);
+        sb.append(", district=").append(district);
         sb.append(", street=").append(street);
         sb.append(", addressinfo=").append(addressinfo);
         sb.append(", traptype=").append(traptype);
         sb.append(", linkman=").append(linkman);
         sb.append(", mobile=").append(mobile);
+        sb.append(", column10=").append(column10);
         sb.append("]");
         return sb.toString();
     }

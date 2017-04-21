@@ -2,13 +2,16 @@ package com.jimas.weixin.skytrap.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.jimas.common.ResultVo;
 import com.jimas.common.constant.ResultStatusEnum;
 import com.jimas.common.util.ResultUtil;
@@ -48,9 +51,17 @@ public class TaskController extends BaseController{
      */
     @RequestMapping("/addTask")
     @ResponseBody
-    public ResultVo<Object> addTask(HttpServletRequest request, HttpServletResponse response, @ModelAttribute TrapTask trapTask) {
+    public ResultVo<Object> addTask(HttpServletRequest request, HttpServletResponse response,@RequestParam(value="address",required=true) String address, @ModelAttribute TrapTask trapTask) {
         ResultVo<Object> resultVo = new ResultVo<Object>();
         try {
+            String[] split = address.split(" ");
+            trapTask.setProvince(split[0]);
+            if(split.length>1){
+                trapTask.setCity(split[1]);
+            }
+            if(split.length>2){
+                trapTask.setDistrict(split[2]);
+            }
             boolean save = trapTaskApi.saveTrapTask(trapTask);
             if(!save){
                 return ResultUtil.initResultVo(ResultStatusEnum.SERVICE_EXCEPTION.getStatus(),"保存失败",null);

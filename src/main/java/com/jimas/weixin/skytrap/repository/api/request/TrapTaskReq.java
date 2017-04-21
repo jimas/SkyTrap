@@ -6,8 +6,14 @@ public class TrapTaskReq extends BaseObject{
 
     private static final long serialVersionUID = 5635921095533945007L;
 
-    //地址code
-    private String address;
+    //省份
+    private String province;
+
+    //城市
+    private String city;
+
+    //区
+    private String district;
 
     //街道信息
     private String street;
@@ -21,12 +27,28 @@ public class TrapTaskReq extends BaseObject{
     //联系人手机号
     private String mobile;
 
-    public String getAddress() {
-        return address;
+    public String getProvince() {
+        return province;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
     public String getStreet() {
