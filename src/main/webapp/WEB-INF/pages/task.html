@@ -15,7 +15,6 @@
 				<input type="text" class="form-control" name="address" id="address"
 					placeholder="选择你的地区" data-toggle="dropdown" readonly="" />
 				<div class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-					<div>
 						<ul class="nav nav-tabs" role="tablist">
 							<li role="presentation" class="active"><a href="#province"
 								data-next="city" role="tab" data-toggle="tab">省份</a></li>
@@ -29,7 +28,6 @@
 							<div role="tabpanel" class="tab-pane" id="city">--</div>
 							<div role="tabpanel" class="tab-pane" id="district">--</div>
 						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -50,12 +48,14 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="linkman">联系人</label> <input type="text"
+			<label for="linkman">联系人</label>
+			 <input type="text"
 				class="form-control" id="linkman" name="linkman"
 				placeholder="请输入联系人姓名 如：李先生" />
 		</div>
 		<div class="form-group">
-			<label for="mobile">联系人手机号码</label> <input type="text"
+			<label for="mobile">联系人手机号码</label>
+			 <input type="text"
 				class="form-control" name="mobile" id="mobile"
 				placeholder="请输入联系人手机号码" />
 		</div>
@@ -70,9 +70,6 @@
 			 *所以javascript中<![CDATA[&]]>这样的xml实体转义字符会被识别为转义，所以会出sax解析错误
 			 */
 			$("#commit").click(function(){
-				console.log($(".bs-chinese-region input[type=text]").val());
-				console.log($("#address").val()+"sss");
-				console.log($("input[name='address']").val()+"aaa");
 				var bootstrapValidator = $(".trapTaskform").data('bootstrapValidator');
 				bootstrapValidator.validate();
 				if(!bootstrapValidator.isValid()){
@@ -93,6 +90,8 @@
 			});
 			 
 			 $('.trapTaskform').bootstrapValidator({
+				//excluded:[":hidden",":disabled",":not(visible)"] ,//bootstrapValidator的默认配置
+				excluded:[":disabled"],//关键配置，表示只对于禁用域不进行验证，其他的表单元素都要验证
 	            message: 'This value is not valid',
 	            feedbackIcons: {
 	                valid: 'glyphicon glyphicon-ok',
@@ -101,6 +100,7 @@
 	            },
 	            fields: {
 	            	address: {
+	            		trigger:"change", //问题2.关键配置
 	                    validators: {
 	                        notEmpty: {
 	                            message: '地区不能为空'
