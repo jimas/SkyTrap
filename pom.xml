@@ -6,6 +6,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<properties>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>5.0.0-ALPHA</junit.version>
 		<spring.version>4.2.5.RELEASE</spring.version>
 		<jimas.common.version>0.0.2-SNAPSHOT</jimas.common.version>
@@ -275,7 +277,7 @@
 							<directory>${project.build.directory}</directory>
 							<filtering>true</filtering>
 							<includes>
-								<include>index.html</include>
+								<include>version.html</include>
 							</includes>
 						</resource>
 					</webResources>
