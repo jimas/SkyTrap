@@ -16,7 +16,7 @@ public class DemoController extends BaseController{
         
         return "demo";
     }
-    @RequestMapping({"","/index"})
+    @RequestMapping("/index")
     public String index(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
         
         return "index";
