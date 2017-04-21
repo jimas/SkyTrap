@@ -4,7 +4,7 @@
 <div th:fragment="cityjs">
 
 	<!-- core js -->
-	<div th:include="common/corejs :: corejs" th:remove="tag" />
+	<div th:replace="common/corejs :: corejs" th:remove="tag" />
 	<script th:src="@{/static/js/city/bootstrap-chinese-region.js}"></script>
 
 	<script th:inline="javascript">

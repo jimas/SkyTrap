@@ -4,7 +4,7 @@
 <div th:fragment="header">
 	 <div class="header-nav">
 			<a href="javascript:history.go(-1);" class="back-btn"></a>
-			<h1 class="h1">发布任务</h1>
+			<h1 class="h1" th:text="${headTitle}" ></h1>
 	 </div>
 </div>
 </html>
