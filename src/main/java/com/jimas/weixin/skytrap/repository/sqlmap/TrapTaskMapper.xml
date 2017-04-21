@@ -8,10 +8,10 @@
     <result column="district" property="district" jdbcType="VARCHAR" />
     <result column="street" property="street" jdbcType="VARCHAR" />
     <result column="addressinfo" property="addressinfo" jdbcType="VARCHAR" />
-    <result column="trapType" property="traptype" jdbcType="VARCHAR" />
+    <result column="trap_type" property="trapType" jdbcType="VARCHAR" />
     <result column="linkman" property="linkman" jdbcType="VARCHAR" />
     <result column="mobile" property="mobile" jdbcType="VARCHAR" />
-    <result column="Column_10" property="column10" jdbcType="CHAR" />
+    <result column="trap_info" property="trapInfo" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, province, city, district, street, addressinfo, trapType, linkman, mobile, Column_10
+    id, province, city, district, street, addressinfo, trap_type, linkman, mobile, trap_info
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jimas.weixin.skytrap.repository.entity.TrapTaskCriteria" >
     select
@@ -110,12 +110,12 @@
   <insert id="insert" parameterType="com.jimas.weixin.skytrap.repository.entity.TrapTask" >
     insert into t_trap_task (id, province, city, 
       district, street, addressinfo, 
-      trapType, linkman, mobile, 
-      Column_10)
+      trap_type, linkman, mobile, 
+      trap_info)
     values (#{id,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
       #{district,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR}, #{addressinfo,jdbcType=VARCHAR}, 
-      #{traptype,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
-      #{column10,jdbcType=CHAR})
+      #{trapType,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{trapInfo,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jimas.weixin.skytrap.repository.entity.TrapTask" >
     insert into t_trap_task
@@ -138,8 +138,8 @@
       <if test="addressinfo != null" >
         addressinfo,
       </if>
-      <if test="traptype != null" >
-        trapType,
+      <if test="trapType != null" >
+        trap_type,
       </if>
       <if test="linkman != null" >
         linkman,
@@ -147,8 +147,8 @@
       <if test="mobile != null" >
         mobile,
       </if>
-      <if test="column10 != null" >
-        Column_10,
+      <if test="trapInfo != null" >
+        trap_info,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -170,8 +170,8 @@
       <if test="addressinfo != null" >
         #{addressinfo,jdbcType=VARCHAR},
       </if>
-      <if test="traptype != null" >
-        #{traptype,jdbcType=VARCHAR},
+      <if test="trapType != null" >
+        #{trapType,jdbcType=VARCHAR},
       </if>
       <if test="linkman != null" >
         #{linkman,jdbcType=VARCHAR},
@@ -179,8 +179,8 @@
       <if test="mobile != null" >
         #{mobile,jdbcType=VARCHAR},
       </if>
-      <if test="column10 != null" >
-        #{column10,jdbcType=CHAR},
+      <if test="trapInfo != null" >
+        #{trapInfo,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -211,8 +211,8 @@
       <if test="record.addressinfo != null" >
         addressinfo = #{record.addressinfo,jdbcType=VARCHAR},
       </if>
-      <if test="record.traptype != null" >
-        trapType = #{record.traptype,jdbcType=VARCHAR},
+      <if test="record.trapType != null" >
+        trap_type = #{record.trapType,jdbcType=VARCHAR},
       </if>
       <if test="record.linkman != null" >
         linkman = #{record.linkman,jdbcType=VARCHAR},
@@ -220,8 +220,8 @@
       <if test="record.mobile != null" >
         mobile = #{record.mobile,jdbcType=VARCHAR},
       </if>
-      <if test="record.column10 != null" >
-        Column_10 = #{record.column10,jdbcType=CHAR},
+      <if test="record.trapInfo != null" >
+        trap_info = #{record.trapInfo,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -236,10 +236,10 @@
       district = #{record.district,jdbcType=VARCHAR},
       street = #{record.street,jdbcType=VARCHAR},
       addressinfo = #{record.addressinfo,jdbcType=VARCHAR},
-      trapType = #{record.traptype,jdbcType=VARCHAR},
+      trap_type = #{record.trapType,jdbcType=VARCHAR},
       linkman = #{record.linkman,jdbcType=VARCHAR},
       mobile = #{record.mobile,jdbcType=VARCHAR},
-      Column_10 = #{record.column10,jdbcType=CHAR}
+      trap_info = #{record.trapInfo,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -262,8 +262,8 @@
       <if test="addressinfo != null" >
         addressinfo = #{addressinfo,jdbcType=VARCHAR},
       </if>
-      <if test="traptype != null" >
-        trapType = #{traptype,jdbcType=VARCHAR},
+      <if test="trapType != null" >
+        trap_type = #{trapType,jdbcType=VARCHAR},
       </if>
       <if test="linkman != null" >
         linkman = #{linkman,jdbcType=VARCHAR},
@@ -271,8 +271,8 @@
       <if test="mobile != null" >
         mobile = #{mobile,jdbcType=VARCHAR},
       </if>
-      <if test="column10 != null" >
-        Column_10 = #{column10,jdbcType=CHAR},
+      <if test="trapInfo != null" >
+        trap_info = #{trapInfo,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -284,10 +284,10 @@
       district = #{district,jdbcType=VARCHAR},
       street = #{street,jdbcType=VARCHAR},
       addressinfo = #{addressinfo,jdbcType=VARCHAR},
-      trapType = #{traptype,jdbcType=VARCHAR},
+      trap_type = #{trapType,jdbcType=VARCHAR},
       linkman = #{linkman,jdbcType=VARCHAR},
       mobile = #{mobile,jdbcType=VARCHAR},
-      Column_10 = #{column10,jdbcType=CHAR}
+      trap_info = #{trapInfo,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

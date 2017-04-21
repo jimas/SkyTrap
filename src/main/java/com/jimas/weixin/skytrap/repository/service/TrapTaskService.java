@@ -68,8 +68,8 @@ public class TrapTaskService implements TrapTaskApi {
             if(!StringUtils.isEmpty(params.getMobile())){
                 criteria.andMobileEqualTo(params.getMobile());
             }
-            if(!StringUtils.isEmpty(params.getTraptype())){
-                criteria.andTraptypeEqualTo(params.getTraptype());
+            if(!StringUtils.isEmpty(params.getTrapType())){
+                criteria.andTrapTypeEqualTo(params.getTrapType());
             }
         }
         int total = mapper.countByExample(example);

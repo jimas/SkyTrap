@@ -22,7 +22,7 @@ public class TrapTask implements Serializable {
     private String addressinfo;
 
     //补漏类型
-    private String traptype;
+    private String trapType;
 
     //联系人
     private String linkman;
@@ -30,8 +30,8 @@ public class TrapTask implements Serializable {
     //联系人手机号
     private String mobile;
 
-    //
-    private String column10;
+    //漏水详情
+    private String trapInfo;
 
     private static final long serialVersionUID = 1L;
 
@@ -83,12 +83,12 @@ public class TrapTask implements Serializable {
         this.addressinfo = addressinfo == null ? null : addressinfo.trim();
     }
 
-    public String getTraptype() {
-        return traptype;
+    public String getTrapType() {
+        return trapType;
     }
 
-    public void setTraptype(String traptype) {
-        this.traptype = traptype == null ? null : traptype.trim();
+    public void setTrapType(String trapType) {
+        this.trapType = trapType == null ? null : trapType.trim();
     }
 
     public String getLinkman() {
@@ -107,12 +107,12 @@ public class TrapTask implements Serializable {
         this.mobile = mobile == null ? null : mobile.trim();
     }
 
-    public String getColumn10() {
-        return column10;
+    public String getTrapInfo() {
+        return trapInfo;
     }
 
-    public void setColumn10(String column10) {
-        this.column10 = column10 == null ? null : column10.trim();
+    public void setTrapInfo(String trapInfo) {
+        this.trapInfo = trapInfo == null ? null : trapInfo.trim();
     }
 
     @Override
@@ -127,10 +127,10 @@ public class TrapTask implements Serializable {
         sb.append(", district=").append(district);
         sb.append(", street=").append(street);
         sb.append(", addressinfo=").append(addressinfo);
-        sb.append(", traptype=").append(traptype);
+        sb.append(", trapType=").append(trapType);
         sb.append(", linkman=").append(linkman);
         sb.append(", mobile=").append(mobile);
-        sb.append(", column10=").append(column10);
+        sb.append(", trapInfo=").append(trapInfo);
         sb.append("]");
         return sb.toString();
     }

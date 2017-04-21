@@ -534,73 +534,73 @@ public class TrapTaskCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andTraptypeIsNull() {
-            addCriterion("trapType is null");
+        public Criteria andTrapTypeIsNull() {
+            addCriterion("trap_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andTraptypeIsNotNull() {
-            addCriterion("trapType is not null");
+        public Criteria andTrapTypeIsNotNull() {
+            addCriterion("trap_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTraptypeEqualTo(String value) {
-            addCriterion("trapType =", value, "traptype");
+        public Criteria andTrapTypeEqualTo(String value) {
+            addCriterion("trap_type =", value, "trapType");
             return (Criteria) this;
         }
 
-        public Criteria andTraptypeNotEqualTo(String value) {
-            addCriterion("trapType <>", value, "traptype");
+        public Criteria andTrapTypeNotEqualTo(String value) {
+            addCriterion("trap_type <>", value, "trapType");
             return (Criteria) this;
         }
 
-        public Criteria andTraptypeGreaterThan(String value) {
-            addCriterion("trapType >", value, "traptype");
+        public Criteria andTrapTypeGreaterThan(String value) {
+            addCriterion("trap_type >", value, "trapType");
             return (Criteria) this;
         }
 
-        public Criteria andTraptypeGreaterThanOrEqualTo(String value) {
-            addCriterion("trapType >=", value, "traptype");
+        public Criteria andTrapTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("trap_type >=", value, "trapType");
             return (Criteria) this;
         }
 
-        public Criteria andTraptypeLessThan(String value) {
-            addCriterion("trapType <", value, "traptype");
+        public Criteria andTrapTypeLessThan(String value) {
+            addCriterion("trap_type <", value, "trapType");
             return (Criteria) this;
         }
 
-        public Criteria andTraptypeLessThanOrEqualTo(String value) {
-            addCriterion("trapType <=", value, "traptype");
+        public Criteria andTrapTypeLessThanOrEqualTo(String value) {
+            addCriterion("trap_type <=", value, "trapType");
             return (Criteria) this;
         }
 
-        public Criteria andTraptypeLike(String value) {
-            addCriterion("trapType like", value, "traptype");
+        public Criteria andTrapTypeLike(String value) {
+            addCriterion("trap_type like", value, "trapType");
             return (Criteria) this;
         }
 
-        public Criteria andTraptypeNotLike(String value) {
-            addCriterion("trapType not like", value, "traptype");
+        public Criteria andTrapTypeNotLike(String value) {
+            addCriterion("trap_type not like", value, "trapType");
             return (Criteria) this;
         }
 
-        public Criteria andTraptypeIn(List<String> values) {
-            addCriterion("trapType in", values, "traptype");
+        public Criteria andTrapTypeIn(List<String> values) {
+            addCriterion("trap_type in", values, "trapType");
             return (Criteria) this;
         }
 
-        public Criteria andTraptypeNotIn(List<String> values) {
-            addCriterion("trapType not in", values, "traptype");
+        public Criteria andTrapTypeNotIn(List<String> values) {
+            addCriterion("trap_type not in", values, "trapType");
             return (Criteria) this;
         }
 
-        public Criteria andTraptypeBetween(String value1, String value2) {
-            addCriterion("trapType between", value1, value2, "traptype");
+        public Criteria andTrapTypeBetween(String value1, String value2) {
+            addCriterion("trap_type between", value1, value2, "trapType");
             return (Criteria) this;
         }
 
-        public Criteria andTraptypeNotBetween(String value1, String value2) {
-            addCriterion("trapType not between", value1, value2, "traptype");
+        public Criteria andTrapTypeNotBetween(String value1, String value2) {
+            addCriterion("trap_type not between", value1, value2, "trapType");
             return (Criteria) this;
         }
 
@@ -744,73 +744,73 @@ public class TrapTaskCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andColumn10IsNull() {
-            addCriterion("Column_10 is null");
+        public Criteria andTrapInfoIsNull() {
+            addCriterion("trap_info is null");
             return (Criteria) this;
         }
 
-        public Criteria andColumn10IsNotNull() {
-            addCriterion("Column_10 is not null");
+        public Criteria andTrapInfoIsNotNull() {
+            addCriterion("trap_info is not null");
             return (Criteria) this;
         }
 
-        public Criteria andColumn10EqualTo(String value) {
-            addCriterion("Column_10 =", value, "column10");
+        public Criteria andTrapInfoEqualTo(String value) {
+            addCriterion("trap_info =", value, "trapInfo");
             return (Criteria) this;
         }
 
-        public Criteria andColumn10NotEqualTo(String value) {
-            addCriterion("Column_10 <>", value, "column10");
+        public Criteria andTrapInfoNotEqualTo(String value) {
+            addCriterion("trap_info <>", value, "trapInfo");
             return (Criteria) this;
         }
 
-        public Criteria andColumn10GreaterThan(String value) {
-            addCriterion("Column_10 >", value, "column10");
+        public Criteria andTrapInfoGreaterThan(String value) {
+            addCriterion("trap_info >", value, "trapInfo");
             return (Criteria) this;
         }
 
-        public Criteria andColumn10GreaterThanOrEqualTo(String value) {
-            addCriterion("Column_10 >=", value, "column10");
+        public Criteria andTrapInfoGreaterThanOrEqualTo(String value) {
+            addCriterion("trap_info >=", value, "trapInfo");
             return (Criteria) this;
         }
 
-        public Criteria andColumn10LessThan(String value) {
-            addCriterion("Column_10 <", value, "column10");
+        public Criteria andTrapInfoLessThan(String value) {
+            addCriterion("trap_info <", value, "trapInfo");
             return (Criteria) this;
         }
 
-        public Criteria andColumn10LessThanOrEqualTo(String value) {
-            addCriterion("Column_10 <=", value, "column10");
+        public Criteria andTrapInfoLessThanOrEqualTo(String value) {
+            addCriterion("trap_info <=", value, "trapInfo");
             return (Criteria) this;
         }
 
-        public Criteria andColumn10Like(String value) {
-            addCriterion("Column_10 like", value, "column10");
+        public Criteria andTrapInfoLike(String value) {
+            addCriterion("trap_info like", value, "trapInfo");
             return (Criteria) this;
         }
 
-        public Criteria andColumn10NotLike(String value) {
-            addCriterion("Column_10 not like", value, "column10");
+        public Criteria andTrapInfoNotLike(String value) {
+            addCriterion("trap_info not like", value, "trapInfo");
             return (Criteria) this;
         }
 
-        public Criteria andColumn10In(List<String> values) {
-            addCriterion("Column_10 in", values, "column10");
+        public Criteria andTrapInfoIn(List<String> values) {
+            addCriterion("trap_info in", values, "trapInfo");
             return (Criteria) this;
         }
 
-        public Criteria andColumn10NotIn(List<String> values) {
-            addCriterion("Column_10 not in", values, "column10");
+        public Criteria andTrapInfoNotIn(List<String> values) {
+            addCriterion("trap_info not in", values, "trapInfo");
             return (Criteria) this;
         }
 
-        public Criteria andColumn10Between(String value1, String value2) {
-            addCriterion("Column_10 between", value1, value2, "column10");
+        public Criteria andTrapInfoBetween(String value1, String value2) {
+            addCriterion("trap_info between", value1, value2, "trapInfo");
             return (Criteria) this;
         }
 
-        public Criteria andColumn10NotBetween(String value1, String value2) {
-            addCriterion("Column_10 not between", value1, value2, "column10");
+        public Criteria andTrapInfoNotBetween(String value1, String value2) {
+            addCriterion("trap_info not between", value1, value2, "trapInfo");
             return (Criteria) this;
         }
     }

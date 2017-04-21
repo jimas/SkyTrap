@@ -19,7 +19,7 @@ public class TrapTaskReq extends BaseObject{
     private String street;
 
     //补漏类型
-    private String traptype;
+    private String trapType;
 
     //联系人
     private String linkman;
@@ -59,12 +59,12 @@ public class TrapTaskReq extends BaseObject{
         this.street = street;
     }
 
-    public String getTraptype() {
-        return traptype;
+    public String getTrapType() {
+        return trapType;
     }
 
-    public void setTraptype(String traptype) {
-        this.traptype = traptype;
+    public void setTrapType(String trapType) {
+        this.trapType = trapType;
     }
 
     public String getLinkman() {
