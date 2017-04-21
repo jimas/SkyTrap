@@ -1,10 +1,11 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-3.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<div th:fragment="header">
-	 <div class="header-nav">
-			<a href="javascript:history.go(-1);" class="back-btn"></a>
-			<h1 class="h3" th:text="${headTitle}" ></h1>
-	 </div>
+<div th:fragment="dropjs">
+
+	<!-- core js -->
+	<div th:include="common/corejs :: corejs" th:remove="tag" />
+	<script th:src="@{/static/js/drop/dropload.min.js}"></script>
+
 </div>
 </html>

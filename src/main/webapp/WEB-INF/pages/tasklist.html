@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-3.dtd">
+<html lang="zh-CN" class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>task list</title>
+<div th:include="common/drop/dropcss :: dropcss" th:remove="tag" />
+
+<style type="text/css">
+	th{
+		text-align:center;
+	}
+</style>
+</head>
+<body th:with="headTitle='任务列表'">
+	<div th:replace="common/header :: header" th:remove="tag" />
+	<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>所属地区</th>
+					<th>详细地址</th>
+					<th>补漏类型</th>
+					<th>联系人</th>
+					<th>手机号码</th>
+				</tr>
+			</thead>
+			<tbody th:if="${not #lists.isEmpty(taskList)}">
+			
+				 <tr th:each="task : ${taskList}">
+				 	<td th:text="${task.province} +' ' +${task.city} +' ' +${task.district}"></td>
+				 	<td th:text="${task.addressinfo}"></td>
+				 	<td th:text="${task.trapType}"></td>
+				 	<td th:text="${task.linkman}"></td>
+				 	<td th:text="${task.mobile}"></td>
+				 </tr>
+			</tbody>
+		</table>
+	
+	<div th:include="common/drop/dropjs :: dropjs" th:remove="tag" />
+</body>
+
+</html>

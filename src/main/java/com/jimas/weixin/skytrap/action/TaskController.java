@@ -16,6 +16,9 @@ import com.jimas.common.ResultVo;
 import com.jimas.common.constant.ResultStatusEnum;
 import com.jimas.common.util.ResultUtil;
 import com.jimas.weixin.skytrap.repository.api.TrapTaskApi;
+import com.jimas.weixin.skytrap.repository.api.request.PageRequest;
+import com.jimas.weixin.skytrap.repository.api.request.TrapTaskReq;
+import com.jimas.weixin.skytrap.repository.api.response.PageResponse;
 import com.jimas.weixin.skytrap.repository.entity.TrapTask;
 /**
  * @Description 任务 控制层
@@ -72,5 +75,13 @@ public class TaskController extends BaseController{
         }
         
         return resultVo;
+    }
+    
+    @RequestMapping("/findTasks")
+    public String findTasks(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
+        PageRequest<TrapTaskReq> pageReq=new PageRequest<TrapTaskReq>();
+        PageResponse<TrapTask> pageRes = trapTaskApi.findByParams(pageReq);
+        map.put("taskList", pageRes.getList());
+        return "tasklist";
     }
 }

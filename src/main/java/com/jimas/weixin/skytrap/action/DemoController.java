@@ -24,6 +24,6 @@ public class DemoController extends BaseController{
     @RequestMapping("/city")
     public String city(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
         
-        return "task";
+        return "citylist";
     }
 }
