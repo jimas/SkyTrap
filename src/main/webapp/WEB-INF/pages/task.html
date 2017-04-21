@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>publish task</title>
-<div th:replace="common/city/citycss :: citycss" th:remove="tag" />
+<div th:include="common/city/citycss :: citycss" th:remove="tag" />
 </head>
 <body th:with="headTitle='发布任务'">
 	<div th:replace="common/header :: header" th:remove="tag" />
@@ -61,7 +61,7 @@
 		</div>
 		<button id="commit" type="button" class="btn btn-default">提交</button>
 	</form>
-	<div th:replace="common/city/cityjs :: cityjs" th:remove="tag" />
+	<div th:include="common/city/cityjs :: cityjs" th:remove="tag" />
 
 	<script th:inline="javascript">
 		

@@ -2,11 +2,11 @@
 <html lang="zh-CN" class="no-js" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Landy - Parallax App Landing Page</title>
-    <div th:replace="common/corecss :: corecss" th:remove="tag" />
+    <title>App Index</title>
+    <div th:include="common/corecss :: corecss" th:remove="tag" />
   </head>
-  <body>
-	  <div th:replace="common/header :: header" th:remove="tag" />
+  <body th:with="headTitle='首页'">
+	  <div th:include="common/header :: header" th:remove="tag" />
 	  <!-- NAVBAR
 	      ================================================== -->
 	  <nav class="navbar navbar-default" role="navigation">
@@ -239,7 +239,7 @@
 	  	</div>
 	  </section>
 	  
-	 <div th:replace="common/corejs :: corejs" th:remove="tag" />
+	 <div th:include="common/corejs :: corejs" th:remove="tag" />
 	 
     </body>
 </html>
