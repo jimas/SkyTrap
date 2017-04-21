@@ -26,7 +26,7 @@
 			<tbody th:if="${not #lists.isEmpty(taskList)}">
 			
 				 <tr th:each="task : ${taskList}">
-				 	<td th:text="${task.province} +' ' +${task.city} +' ' +${task.district}"></td>
+				 	<td th:text="${task.province} +' ' +(${task.city} ?: '')  +' ' +(${task.district} ?: '') "></td>
 				 	<td th:text="${task.addressinfo}"></td>
 				 	<td th:text="${task.trapType}"></td>
 				 	<td th:text="${task.linkman}"></td>
