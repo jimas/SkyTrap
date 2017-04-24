@@ -1,5 +1,7 @@
 package com.jimas.weixin.skytrap.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -77,11 +79,16 @@ public class TaskController extends BaseController{
         return resultVo;
     }
     
-    @RequestMapping("/findTasks")
-    public String findTasks(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
-        PageRequest<TrapTaskReq> pageReq=new PageRequest<TrapTaskReq>();
-        PageResponse<TrapTask> pageRes = trapTaskApi.findByParams(pageReq);
-        map.put("taskList", pageRes.getList());
+    @RequestMapping("/taskList")
+    public String taskList(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
         return "tasklist";
+    }
+    @RequestMapping("/findTasks")
+    @ResponseBody
+    public ResultVo<List<TrapTask>>  findTasks(HttpServletRequest request, HttpServletResponse response, ModelMap map,@ModelAttribute PageRequest<TrapTaskReq> pageReq) {
+        ResultVo<List<TrapTask>> resultVo = new ResultVo<List<TrapTask>>();
+        PageResponse<TrapTask> pageRes = trapTaskApi.findByParams(pageReq);
+        resultVo.setResult(pageRes.getList());
+        return resultVo;
     }
 }

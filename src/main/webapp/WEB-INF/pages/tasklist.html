@@ -6,14 +6,15 @@
 <div th:include="common/drop/dropcss :: dropcss" th:remove="tag" />
 
 <style type="text/css">
-	th{
-		text-align:center;
-	}
+th {
+	text-align: center;
+}
 </style>
 </head>
 <body th:with="headTitle='任务列表'">
 	<div th:replace="common/header :: header" th:remove="tag" />
-	<table class="table table-hover table-bordered">
+	<div class="content">
+		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
 					<th>所属地区</th>
@@ -23,19 +24,96 @@
 					<th>手机号码</th>
 				</tr>
 			</thead>
-			<tbody th:if="${not #lists.isEmpty(taskList)}">
-			
-				 <tr th:each="task : ${taskList}">
-				 	<td th:text="${task.province} +' ' +(${task.city} ?: '')  +' ' +(${task.district} ?: '') "></td>
-				 	<td th:text="${task.addressinfo}"></td>
-				 	<td th:text="${task.trapType}"></td>
-				 	<td th:text="${task.linkman}"></td>
-				 	<td th:text="${task.mobile}"></td>
-				 </tr>
+			<!-- 		<tbody th:if="${not #lists.isEmpty(taskList)}"> -->
+
+			<!-- 			<tr th:each="task : ${taskList}"> -->
+			<!-- 				<td -->
+			<!-- 					th:text="${task.province} +' ' +(${task.city} ?: '')  +' ' +(${task.district} ?: '') "></td> -->
+			<!-- 				<td th:text="${task.addressinfo}"></td> -->
+			<!-- 				<td th:text="${task.trapType}"></td> -->
+			<!-- 				<td th:text="${task.linkman}"></td> -->
+			<!-- 				<td th:text="${task.mobile}"></td> -->
+			<!-- 			</tr> -->
+			<!-- 		</tbody> -->
+			<tbody class="lists">
+
+
 			</tbody>
+
 		</table>
-	
+	</div>
 	<div th:include="common/drop/dropjs :: dropjs" th:remove="tag" />
+
+	<script th:inline="javascript">
+		$(function() {
+			// 页数
+			var page = 0;
+			// 每页展示5个
+			var size = 10;
+			// dropload
+			$('.content').dropload(
+			{
+				scrollArea : window,
+				loadDownFn : function(me) {
+					page++;
+					// 拼接HTML
+					var result = '';
+					$.ajax({
+						type : 'GET',
+						url : [[@{/}]]+'task/findTasks?pageNumber='
+								+ page
+								+ '&limit='
+								+ size,
+
+						dataType : 'json',
+						success : function(data) {
+							var arrLen = data.result.length;
+							if (arrLen > 0) {
+								for (var i = 0; i < arrLen; i++) {
+									result+='<tr>'
+											+'<td>'+data.result[i].province+' '+ifNullReturn(data.result[i].city)+' '+ifNullReturn(data.result[i].district)+'</td>'
+											+'<td>'+data.result[i].addressinfo+'</td>'
+											+'<td>'+data.result[i].trapType+'</td>'
+											+'<td>'+data.result[i].linkman+'</td>'
+											+'<td>'+data.result[i].mobile+'</td>'
+											+'</tr>';
+								}
+								// 如果没有数据
+							} else {
+								// 锁定
+								me.lock();
+								// 无数据
+								me.noData();
+							}
+							// 为了测试，延迟1秒加载
+							setTimeout(function() {
+								// 插入数据到页面，放到最后面
+								$('.lists').append(result);
+								// 每次数据插入，必须重置
+								me.resetload();
+							}, 1000);
+						},
+						error : function(xhr, type) {
+							alert('Ajax error!');
+							// 即使加载出错，也得重置
+							me.resetload();
+						}
+					});
+				}
+			});
+			
+			
+			function ifNullReturn(value){
+				
+				if(!value){
+					return '';
+				}
+				return value;
+			}
+			
+			
+		});
+	</script>
 </body>
 
 </html>

@@ -14,9 +14,18 @@ public class TrapTaskServiceTest extends BaseTest{
     private TrapTaskService service;
     @Test
     public void testSaveTrapTask() {
-        TrapTask task=new TrapTask();
-        boolean saveTrapTask = service.saveTrapTask(task);
-        System.out.println(saveTrapTask);
+        for(int i=0;i<100;i++){
+            TrapTask task=new TrapTask();
+            task.setAddressinfo("测试"+i);
+            task.setCity("上海市");
+            task.setProvince("上海");
+            task.setDistrict("黄浦区");
+            task.setLinkman("王剩下"+i);
+            task.setMobile("18912636309");
+            task.setTrapType("其他");
+            boolean saveTrapTask = service.saveTrapTask(task);
+            System.out.println(saveTrapTask);
+        }
     }
 
     @Test
