@@ -14,9 +14,9 @@ public class TrapTaskServiceTest extends BaseTest{
     private TrapTaskService service;
     @Test
     public void testSaveTrapTask() {
-        for(int i=0;i<100;i++){
+        for(int i=10;i<20;i++){
             TrapTask task=new TrapTask();
-            task.setAddressinfo("测试"+i);
+            task.setAddressinfo("测试cdsdsd"+i);
             task.setCity("上海市");
             task.setProvince("上海");
             task.setDistrict("黄浦区");

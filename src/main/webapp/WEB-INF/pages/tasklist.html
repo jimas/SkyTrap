@@ -48,7 +48,7 @@ th {
 		$(function() {
 			// 页数
 			var page = 0;
-			// 每页展示5个
+			// 每页展示10个
 			var size = 10;
 			// dropload
 			$('.content').dropload(
@@ -86,12 +86,12 @@ th {
 								me.noData();
 							}
 							// 为了测试，延迟1秒加载
-							setTimeout(function() {
+// 							setTimeout(function() {
 								// 插入数据到页面，放到最后面
 								$('.lists').append(result);
 								// 每次数据插入，必须重置
 								me.resetload();
-							}, 1000);
+// 							}, 1000);
 						},
 						error : function(xhr, type) {
 							alert('Ajax error!');
@@ -99,9 +99,11 @@ th {
 							me.resetload();
 						}
 					});
+				},
+				loadUpFn : function(me) {
+					window.location.reload();
 				}
 			});
-			
 			
 			function ifNullReturn(value){
 				
