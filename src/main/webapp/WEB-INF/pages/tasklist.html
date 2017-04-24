@@ -22,19 +22,9 @@ th {
 					<th>补漏类型</th>
 					<th>联系人</th>
 					<th>手机号码</th>
+					<th>操作</th>
 				</tr>
 			</thead>
-			<!-- 		<tbody th:if="${not #lists.isEmpty(taskList)}"> -->
-
-			<!-- 			<tr th:each="task : ${taskList}"> -->
-			<!-- 				<td -->
-			<!-- 					th:text="${task.province} +' ' +(${task.city} ?: '')  +' ' +(${task.district} ?: '') "></td> -->
-			<!-- 				<td th:text="${task.addressinfo}"></td> -->
-			<!-- 				<td th:text="${task.trapType}"></td> -->
-			<!-- 				<td th:text="${task.linkman}"></td> -->
-			<!-- 				<td th:text="${task.mobile}"></td> -->
-			<!-- 			</tr> -->
-			<!-- 		</tbody> -->
 			<tbody class="lists">
 
 
@@ -45,6 +35,7 @@ th {
 	<div th:include="common/drop/dropjs :: dropjs" th:remove="tag" />
 
 	<script th:inline="javascript">
+		var basePath=[[@{/}]];
 		$(function() {
 			// 页数
 			var page = 0;
@@ -60,7 +51,7 @@ th {
 					var result = '';
 					$.ajax({
 						type : 'GET',
-						url : [[@{/}]]+'task/findTasks?pageNumber='
+						url : basePath+'task/findTasks?pageNumber='
 								+ page
 								+ '&limit='
 								+ size,
@@ -76,6 +67,10 @@ th {
 											+'<td>'+data.result[i].trapType+'</td>'
 											+'<td>'+data.result[i].linkman+'</td>'
 											+'<td>'+data.result[i].mobile+'</td>'
+											+'<td>'
+											+'<a href="'+basePath+'task/taskEdit?taskId='+data.result[i].id+'">修改</a>'
+											+'<a href="javascript:removeTaskById('+data.result[i].id+')">删除</a>'
+											+'</td>'
 											+'</tr>';
 								}
 								// 如果没有数据
@@ -105,16 +100,20 @@ th {
 				}
 			});
 			
-			function ifNullReturn(value){
-				
-				if(!value){
-					return '';
-				}
-				return value;
-			}
-			
-			
 		});
+		//删除
+		function removeTaskById(taskId){
+			$.post(basePath+'task/taskDelete',{"taskId":taskId},function(rs){
+				/*<![CDATA[*/
+				if(rs && rs.status==200){
+					window.location.reload();
+				/*]]>*/
+				}else{
+					var msg=ifNullReturn(rs.message)=='' ? '删除失败' : rs.message;
+					Utils.alert(msg);
+				}
+			})
+		};
 	</script>
 </body>
 

@@ -2,14 +2,20 @@ package com.jimas.weixin.skytrap.repository.service;
 
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.google.gson.reflect.TypeToken;
+import com.jimas.common.util.GsonUtil;
 import com.jimas.weixin.skytrap.BaseTest;
+import com.jimas.weixin.skytrap.repository.dao.CityMapper;
+import com.jimas.weixin.skytrap.repository.entity.City;
 import com.jimas.weixin.skytrap.repository.entity.TrapTask;
 
 public class TrapTaskServiceTest extends BaseTest{
-
     @Autowired
     private TrapTaskService service;
     @Test
@@ -42,5 +48,4 @@ public class TrapTaskServiceTest extends BaseTest{
     public void testFindByParams() {
         fail("Not yet implemented");
     }
-
 }

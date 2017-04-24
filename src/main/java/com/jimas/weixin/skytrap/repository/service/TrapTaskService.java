@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
-
 import com.jimas.weixin.skytrap.repository.api.TrapTaskApi;
 import com.jimas.weixin.skytrap.repository.api.request.PageRequest;
 import com.jimas.weixin.skytrap.repository.api.request.TrapTaskReq;
@@ -26,7 +25,15 @@ public class TrapTaskService implements TrapTaskApi {
     @Transactional(value = "appransactionManager")
     public boolean saveTrapTask(TrapTask task) {
         Assert.notNull(task);
-        int flag = mapper.insertSelective(task);
+        int flag =0;
+        if(StringUtils.isEmpty(task.getId())){//insert
+            flag= mapper.insertSelective(task);
+        }else{
+            TrapTask trapTaskDb = this.findById(task.getId());
+            if(trapTaskDb!=null){
+                flag= mapper.updateByPrimaryKeySelective(task);
+            }
+        }
         return flag>0?true:false;
     }
 
