@@ -1,18 +1,9 @@
 package com.jimas.weixin.skytrap.repository.service;
 
 import static org.junit.Assert.fail;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.google.gson.reflect.TypeToken;
-import com.jimas.common.util.GsonUtil;
 import com.jimas.weixin.skytrap.BaseTest;
-import com.jimas.weixin.skytrap.repository.dao.CityMapper;
-import com.jimas.weixin.skytrap.repository.entity.City;
 import com.jimas.weixin.skytrap.repository.entity.TrapTask;
 
 public class TrapTaskServiceTest extends BaseTest{
@@ -20,7 +11,7 @@ public class TrapTaskServiceTest extends BaseTest{
     private TrapTaskService service;
     @Test
     public void testSaveTrapTask() {
-        for(int i=10;i<20;i++){
+        for(int i=5;i<30;i++){
             TrapTask task=new TrapTask();
             task.setAddressinfo("测试cdsdsd"+i);
             task.setCity("上海市");
