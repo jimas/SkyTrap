@@ -54,10 +54,17 @@ Utils = {
 		this.$alert.css("z-index", r); //解决多个弹窗同时调用时出现层覆盖问题
 	}
 };
- function ifNullReturn(val){
+ function ifNullReturn(val,defaultValue){
 	if(!val){
-		return "";
+		return defaultValue;
 	}else{
 		return val;
 	}
 }
+ function ifNullReturn(val){
+		if(!val){
+			return "";
+		}else{
+			return val;
+		}
+	}

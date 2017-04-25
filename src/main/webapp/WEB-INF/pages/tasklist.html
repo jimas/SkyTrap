@@ -38,107 +38,32 @@ th {
 
 	<script th:inline="javascript">
 		var basePath=[[@{/}]];
-		$(function() {
-			// 页数
-			var page = 0;
-			// 每页展示10个
-			var size = 10;
-			// dropload
-			$('.content').dropload(
-			{
-				scrollArea : window,
-				loadUpFn : function(me) {
-					// 拼接HTML
-					$.ajax({
-						type : 'GET',
-						url : basePath+'task/findTasks?pageNumber='
-								+ 1
-								+ '&limit='
-								+ size,
-						dataType : 'json',
-						success : function(data) {
-							var result = '';
-							var arrLen = data.result.length;
-							for (var i = 0; i < arrLen; i++) {
-								result+='<tr>'
-										+'<td>'+data.result[i].province+' '+ifNullReturn(data.result[i].city)+' '+ifNullReturn(data.result[i].district)+'</td>'
-										+'<td>'+data.result[i].addressinfo+'</td>'
-										+'<td>'+data.result[i].trapType+'</td>'
-										+'<td>'+data.result[i].linkman+'</td>'
-										+'<td>'+data.result[i].mobile+'</td>'
-										+'<td>'
-										+'<a href="'+basePath+'task/taskEdit?taskId='+data.result[i].id+'">修改</a>'
-										+'<a href="javascript:removeTaskById('+data.result[i].id+')">删除</a>'
-										+'</td>'
-										+'</tr>';
-							}
-							$('.lists').html(result);
-							me.resetload();
-	                        // 重置页数，重新获取loadDownFn的数据
-	                        page = 1;
-	                        // 解锁loadDownFn里锁定的情况
-	                        me.unlock();
-	                        me.noData(false);
-						},
-						error : function(xhr, type) {
-							alert('Ajax error!');
-							// 即使加载出错，也得重置
-							me.resetload();
-						}
-					});
-				},
-				loadDownFn : function(me) {
-					page++;
-					// 拼接HTML
-					var result = '';
-					$.ajax({
-						type : 'GET',
-						url : basePath+'task/findTasks?pageNumber='
-								+ page
-								+ '&limit='
-								+ size,
-
-						dataType : 'json',
-						success : function(data) {
-							var arrLen = data.result.length;
-							if (arrLen > 0) {
-								for (var i = 0; i < arrLen; i++) {
-									result+='<tr>'
-											+'<td>'+data.result[i].province+' '+ifNullReturn(data.result[i].city)+' '+ifNullReturn(data.result[i].district)+'</td>'
-											+'<td>'+data.result[i].addressinfo+'</td>'
-											+'<td>'+data.result[i].trapType+'</td>'
-											+'<td>'+data.result[i].linkman+'</td>'
-											+'<td>'+data.result[i].mobile+'</td>'
-											+'<td>'
-											+'<a href="'+basePath+'task/taskEdit?taskId='+data.result[i].id+'">修改</a>'
-											+'<a href="javascript:removeTaskById('+data.result[i].id+')">删除</a>'
-											+'</td>'
-											+'</tr>';
-								}
-								// 如果没有数据
-							} else {
-								// 锁定
-								me.lock();
-								// 无数据
-								me.noData();
-							}
-							// 插入数据到页面，放到最后面
-							$('.lists').append(result);
-							// 每次数据插入，必须重置
-							me.resetload();
-						},
-						error : function(xhr, type) {
-							alert('Ajax error!');
-							// 即使加载出错，也得重置
-							me.resetload();
-						}
-					});
-				}
-// 				,threshold : 50 //提前加载距离  默认 加载区高度2/3	正整数
-// 				,distance:50 //拉动距离
-			});
-			
-		});
+		var callback= function(list){
+			var html="";
+	  		for (var i = 0; i < list.length; i++) {
+	  			html+='<tr>'
+					+'<td>'+list[i].province+' '+ifNullReturn(list[i].city)+' '+ifNullReturn(list[i].district)+'</td>'
+					+'<td>'+list[i].addressinfo+'</td>'
+					+'<td>'+list[i].trapType+'</td>'
+					+'<td>'+list[i].linkman+'</td>'
+					+'<td>'+list[i].mobile+'</td>'
+					+'<td>'
+					+'<a href="'+basePath+'task/taskEdit?taskId='+list[i].id+'">修改</a>'
+					+'<a href="javascript:removeTaskById('+list[i].id+')">删除</a>'
+					+'</td>'
+					+'</tr>';
+			}
+	  		return html;
+		}
+		var dropParams={
+				pageNumber : 0,//默认 0
+				limit : 15,//默认15 条一页
+				url : basePath+"task/findTasks",//请求的url地址
+				$dropload:$(".content"),//dropload jquery 元素
+				$e:$(".lists"),//要显示的数据的 jquery元素
+				callback:callback//回调函数
+		};
+		dropLoadUtil.initDropLoad(dropParams);
 		//删除
 		function removeTaskById(taskId){
 			$.post(basePath+'task/taskDelete',{"taskId":taskId},function(rs){
