@@ -3,17 +3,20 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>task list</title>
+<meta name="full-screen" content="yes">
+<meta name="x5-fullscreen" content="true">
 <div th:include="common/drop/dropcss :: dropcss" th:remove="tag" />
 
 <style type="text/css">
-	th{
-		text-align:center;
-	}
+th {
+	text-align: center;
+}
 </style>
 </head>
 <body th:with="headTitle='城市列表'">
 	<div th:replace="common/header :: header" th:remove="tag" />
-	<table class="table table-hover table-bordered">
+	<div class="content">
+		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
 					<th>id</th>
@@ -24,32 +27,47 @@
 			<tbody class="citylist">
 			</tbody>
 		</table>
-	
-	
+	</div>
+
 	<div th:include="common/drop/dropjs :: dropjs" th:remove="tag" />
 
 	<script th:inline="javascript">
-	
-	$('.citylist').dropload({
+	var basePath=[[@{/}]];
+	$(function() {
+		// 页数
+		var page = 0;
+		// 每页展示10个
+		var size = 10;
+	$('.content').dropload({
 	    scrollArea : window,
-	    loadDownFn : function(me){
+	    loadUpFn : function(me){
 	        $.ajax({
 	            type: 'GET',
-	            url: [[@{/}]]+'static/json/areas.json',
+	            url: basePath+'city/findCitys?pageNumber='
+					+ 1
+					+ '&limit='
+					+ size,
 	            dataType: 'json',
 	            success: function(data){
-	                // 每次数据加载完，必须重置
-				 var str="";
-				 $.each(data,function(index,item){
-					 str=str+"<tr>";
-					 str=str+"<td>"+data[index].id+"</td>";
-					 str=str+"<td>"+data[index].cname+"</td>";
-					 str=str+"<td>"+data[index].upid+"</td>";
-					 str=str+"</tr>";
-				 })
-				 
-				 $('.citylist').html(str);
-	                me.resetload();
+	           	 var result = '';
+				 var arrLen = data.result.length;
+					if (arrLen > 0) {
+						for (var i = 0; i < arrLen; i++) {
+							result+="<tr>"
+							  +"<td>"+data.result[i].id+"</td>"
+							 +"<td>"+data.result[i].cname+"</td>"
+							 +"<td>"+data.result[i].upid+"</td>"
+							 +"</tr>";
+						}
+					}
+				 $('.citylist').html(result);
+	             // 每次数据加载完，必须重置
+				 me.resetload();
+                 // 重置页数，重新获取loadDownFn的数据
+                 page = 1;
+                 // 解锁loadDownFn里锁定的情况
+                 me.unlock();
+                 me.noData(false);
 	            },
 	            error: function(xhr, type){
 	                alert('Ajax error!');
@@ -57,11 +75,53 @@
 	                me.resetload();
 	            }
 	        });
+	    },
+	    loadDownFn : function(me) {
+	    	page++;
+			// 拼接HTML
+			var result = '';
+			$.ajax({
+				type : 'GET',
+				url : basePath+'city/findCitys?pageNumber='
+						+ page
+						+ '&limit='
+						+ size,
+
+				dataType : 'json',
+				success : function(data) {
+					var arrLen = data.result.length;
+					if (arrLen > 0) {
+						for (var i = 0; i < arrLen; i++) {
+							console.log(data.result[i]);
+							result+="<tr>"
+							  +"<td>"+data.result[i].id+"</td>"
+							 +"<td>"+data.result[i].cname+"</td>"
+							 +"<td>"+data.result[i].upid+"</td>"
+							 +"</tr>";
+						}
+						// 如果没有数据
+					} else {
+						// 锁定
+						me.lock();
+						// 无数据
+						me.noData();
+					}
+					// 插入数据到页面，放到最后面
+					$('.citylist').append(result);
+					// 每次数据插入，必须重置
+					me.resetload();
+				},
+				error : function(xhr, type) {
+					alert('Ajax error!');
+					// 即使加载出错，也得重置
+					me.resetload();
+				}
+			});
 	    }
 	});
-	    
+	});
 	</script>
-		
+
 </body>
 
 </html>
