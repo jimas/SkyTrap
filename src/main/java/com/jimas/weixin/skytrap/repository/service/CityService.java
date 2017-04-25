@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
-
 import com.jimas.weixin.skytrap.repository.api.CityApi;
+import com.jimas.weixin.skytrap.repository.api.request.CityReq;
+import com.jimas.weixin.skytrap.repository.api.request.PageRequest;
+import com.jimas.weixin.skytrap.repository.api.response.PageResponse;
 import com.jimas.weixin.skytrap.repository.dao.CityMapper;
 import com.jimas.weixin.skytrap.repository.entity.City;
 import com.jimas.weixin.skytrap.repository.entity.CityCriteria;
@@ -78,6 +81,35 @@ public class CityService implements CityApi {
             
         }
         return null;
+    }
+
+    @Override
+    public PageResponse<City> findByPage(PageRequest<CityReq> pageReq) {
+        Assert.notNull(pageReq);
+        CityCriteria example=new CityCriteria();
+        example.setLimitSize(pageReq.getLimit());
+        example.setLimitStart(pageReq.getStep());
+        CityReq params = pageReq.getParams();
+        if(!StringUtils.isEmpty(params)){
+            Criteria criteria = example.createCriteria();
+            if(!StringUtils.isEmpty(params.getCname())){
+                criteria.andCnameEqualTo(params.getCname());
+            }
+            if(!StringUtils.isEmpty(params.getId())){
+                criteria.andIdEqualTo(params.getId());
+            }
+            if(!StringUtils.isEmpty(params.getLevel())){
+                criteria.andLevelEqualTo(params.getLevel());
+            }
+            if(!StringUtils.isEmpty(params.getUpid())){
+                criteria.andUpidEqualTo(params.getUpid());
+            }
+        }
+        int total = mapper.countByExample(example);
+        List<City> list = mapper.selectByExample(example);
+        PageResponse<City> pageResponse = new PageResponse<City>(total,pageReq.getPageNumber());
+        pageResponse.setList(list);
+        return pageResponse;
     }
 
 }
