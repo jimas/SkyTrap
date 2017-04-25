@@ -1,5 +1,6 @@
 package com.jimas.weixin.skytrap.repository.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
+
 import com.jimas.weixin.skytrap.repository.api.TrapTaskApi;
 import com.jimas.weixin.skytrap.repository.api.request.PageRequest;
 import com.jimas.weixin.skytrap.repository.api.request.TrapTaskReq;
@@ -26,11 +28,15 @@ public class TrapTaskService implements TrapTaskApi {
     public boolean saveTrapTask(TrapTask task) {
         Assert.notNull(task);
         int flag =0;
+        Date now = new Date();
         if(StringUtils.isEmpty(task.getId())){//insert
+            task.setPublishTime(now);
+            task.setUpdateTime(now);
             flag= mapper.insertSelective(task);
         }else{
             TrapTask trapTaskDb = this.findById(task.getId());
             if(trapTaskDb!=null){
+                task.setUpdateTime(now);
                 flag= mapper.updateByPrimaryKeySelective(task);
             }
         }

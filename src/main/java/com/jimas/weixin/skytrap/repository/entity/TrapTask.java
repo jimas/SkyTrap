@@ -1,6 +1,7 @@
 package com.jimas.weixin.skytrap.repository.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class TrapTask implements Serializable {
     //
@@ -32,6 +33,12 @@ public class TrapTask implements Serializable {
 
     //漏水详情
     private String trapInfo;
+
+    //发布时间
+    private Date publishTime;
+
+    //修改时间
+    private Date updateTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -115,6 +122,22 @@ public class TrapTask implements Serializable {
         this.trapInfo = trapInfo == null ? null : trapInfo.trim();
     }
 
+    public Date getPublishTime() {
+        return publishTime;
+    }
+
+    public void setPublishTime(Date publishTime) {
+        this.publishTime = publishTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -131,6 +154,8 @@ public class TrapTask implements Serializable {
         sb.append(", linkman=").append(linkman);
         sb.append(", mobile=").append(mobile);
         sb.append(", trapInfo=").append(trapInfo);
+        sb.append(", publishTime=").append(publishTime);
+        sb.append(", updateTime=").append(updateTime);
         sb.append("]");
         return sb.toString();
     }
