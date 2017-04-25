@@ -85,6 +85,7 @@ public class TrapTaskService implements TrapTaskApi {
                 criteria.andTrapTypeEqualTo(params.getTrapType());
             }
         }
+        example.setOrderByClause(" publish_time desc,update_time desc ");
         int total = mapper.countByExample(example);
         List<TrapTask> list = mapper.selectByExample(example);
         PageResponse<TrapTask> pageResponse = new PageResponse<TrapTask>(total,pageReq.getPageNumber());

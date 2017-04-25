@@ -1,8 +1,10 @@
 package com.jimas.weixin.skytrap.repository.service;
 
 import static org.junit.Assert.fail;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.jimas.weixin.skytrap.BaseTest;
 import com.jimas.weixin.skytrap.repository.entity.TrapTask;
 
@@ -11,7 +13,12 @@ public class TrapTaskServiceTest extends BaseTest{
     private TrapTaskService service;
     @Test
     public void testSaveTrapTask() {
-        for(int i=5;i<30;i++){
+        for(int i=30;i<40;i++){
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             TrapTask task=new TrapTask();
             task.setAddressinfo("测试cdsdsd"+i);
             task.setCity("上海市");
