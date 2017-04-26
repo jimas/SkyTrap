@@ -28,7 +28,7 @@ var _load=function (me) {
             	Utils.alert("查询数据异常，请联系客服");
             }
             me.resetload();
-            if (loadEnd) {
+            if (loadEnd && $dropParams.pageNumber!=1) {
                 me.lock();
                 me.noData();
                 me.resetload();
