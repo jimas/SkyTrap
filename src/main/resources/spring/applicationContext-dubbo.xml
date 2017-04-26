@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://code.alibabatech.com/schema/dubbo
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<!-- 提供方应用信息，用于计算依赖关系 -->  
+	<dubbo:application name="${dubbo.application}" />
+	
+	<!-- 使用multicast广播注册中心暴露服务地址 -->  
+    <!--<dubbo:registry address="multicast://224.5.6.7:1234" /> -->  
+    
+	 <!-- 使用zookeeper注册中心暴露服务地址  即zookeeper的所在服务器ip地址和端口号 -->  
+	<dubbo:registry protocol="zookeeper" address="${zookeeper.address}" />
+	
+	<dubbo:monitor protocol="registry"/>
+	 <!-- 用dubbo协议在20880端口暴露服务 -->  
+	<dubbo:protocol name="dubbo" port="20880" threads="500" />
+	<!-- 声明需要暴露的服务接口 -->  
+	<dubbo:service timeout="${dubbo.timeout}" group="${dubbo.group}" interface="com.jimas.weixin.skytrap.repository.api.RoleApi" ref="roleService" />
+	<dubbo:service timeout="${dubbo.timeout}" group="${dubbo.group}" interface="com.jimas.weixin.skytrap.repository.api.MenuButtonApi" ref="menuButtonService" />
+	<dubbo:service timeout="${dubbo.timeout}" group="${dubbo.group}" interface="com.jimas.weixin.skytrap.repository.api.UserApi" ref="userService" />
+	<dubbo:service timeout="${dubbo.timeout}" group="${dubbo.group}" interface="com.jimas.weixin.skytrap.repository.api.UserRoleApi" ref="userRoleService" />
+	<dubbo:service timeout="${dubbo.timeout}" group="${dubbo.group}" interface="com.jimas.weixin.skytrap.repository.api.CityApi" ref="cityService" />
+ 
+</beans>

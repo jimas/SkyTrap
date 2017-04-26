@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jimas.weixin.skytrap</groupId>
 	<artifactId>SkyTrap</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<properties>
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
@@ -15,6 +15,8 @@
 		<jsoup.version>1.9.2</jsoup.version>
 		<http.version>4.3.6</http.version>
 		<lombok.version>1.16.8</lombok.version>
+		<hessian.version>4.0.38</hessian.version>
+		<hessian-ui.version>0.0.8</hessian-ui.version>
 	</properties>
 
 	<dependencies>
@@ -81,12 +83,6 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>fluent-hc</artifactId>
 			<version>${http.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>${lombok.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -179,6 +175,48 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>16.0.1</version>
+		</dependency>
+		<!-- dubbo -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+			<version>2.8.4</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-beans</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-core</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-aop</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-expression</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-context</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-web</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>3.4.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.sgroschupf</groupId>
+			<artifactId>zkclient</artifactId>
+			<version>0.1</version>
 		</dependency>
 	</dependencies>
 
@@ -275,6 +313,36 @@
 							<value>版本：${version} 时间：${maven.build.timestamp} 环境：${package.target}
 							</value>
 							<outputFile>${project.build.directory}/version.html</outputFile>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>jar-client</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<echo>Jar Client</echo>
+								<jar jarfile="target/SkyTrap-api-${version}.jar" compress="true">
+									<fileset dir="target/classes">
+										<include name="com/jimas/weixin/skytrap/repository/api/**" />
+										<include name="com/jimas/weixin/skytrap/repository/entity/*" />
+										<exclude name="com/jimas/weixin/skytrap/repository/entity/*Criteria*" />
+									</fileset>
+									<fileset dir="src/main/java">
+										<include name="com/jimas/weixin/skytrap/repository/api/**" />
+										<include name="com/jimas/weixin/skytrap/repository/entity/*" />
+										<exclude name="com/jimas/weixin/skytrap/repository/entity/*Criteria*" />
+									</fileset>
+								</jar>
+							</tasks>
 						</configuration>
 					</execution>
 				</executions>
