@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jimas.weixin.skytrap.repository.dao.MenuButtonMapper" >
   <resultMap id="BaseResultMap" type="com.jimas.weixin.skytrap.repository.entity.MenuButton" >
+    <id column="site_source" property="siteSource" jdbcType="VARCHAR" />
     <id column="operate_url" property="operateUrl" jdbcType="VARCHAR" />
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -73,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    operate_url, code, name, parent_code, ancestor_code, level, sort_str, type, status, 
-    create_time, update_time
+    site_source, operate_url, code, name, parent_code, ancestor_code, level, sort_str, 
+    type, status, create_time, update_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jimas.weixin.skytrap.repository.entity.MenuButtonCriteria" >
     select
@@ -93,15 +94,17 @@
       limit #{limitStart} , #{limitSize}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.jimas.weixin.skytrap.repository.entity.MenuButtonKey" >
     select 
     <include refid="Base_Column_List" />
     from t_menu_button
-    where operate_url = #{operateUrl,jdbcType=VARCHAR}
+    where site_source = #{siteSource,jdbcType=VARCHAR}
+      and operate_url = #{operateUrl,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="com.jimas.weixin.skytrap.repository.entity.MenuButtonKey" >
     delete from t_menu_button
-    where operate_url = #{operateUrl,jdbcType=VARCHAR}
+    where site_source = #{siteSource,jdbcType=VARCHAR}
+      and operate_url = #{operateUrl,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.jimas.weixin.skytrap.repository.entity.MenuButtonCriteria" >
     delete from t_menu_button
@@ -110,18 +113,23 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jimas.weixin.skytrap.repository.entity.MenuButton" >
-    insert into t_menu_button (operate_url, code, name, 
-      parent_code, ancestor_code, level, 
-      sort_str, type, status, 
-      create_time, update_time)
-    values (#{operateUrl,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{parentCode,jdbcType=VARCHAR}, #{ancestorCode,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
-      #{sortStr,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    insert into t_menu_button (site_source, operate_url, code, 
+      name, parent_code, ancestor_code, 
+      level, sort_str, type, 
+      status, create_time, update_time
+      )
+    values (#{siteSource,jdbcType=VARCHAR}, #{operateUrl,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{parentCode,jdbcType=VARCHAR}, #{ancestorCode,jdbcType=VARCHAR}, 
+      #{level,jdbcType=INTEGER}, #{sortStr,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.jimas.weixin.skytrap.repository.entity.MenuButton" >
     insert into t_menu_button
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="siteSource != null" >
+        site_source,
+      </if>
       <if test="operateUrl != null" >
         operate_url,
       </if>
@@ -157,6 +165,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="siteSource != null" >
+        #{siteSource,jdbcType=VARCHAR},
+      </if>
       <if test="operateUrl != null" >
         #{operateUrl,jdbcType=VARCHAR},
       </if>
@@ -201,6 +212,9 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update t_menu_button
     <set >
+      <if test="record.siteSource != null" >
+        site_source = #{record.siteSource,jdbcType=VARCHAR},
+      </if>
       <if test="record.operateUrl != null" >
         operate_url = #{record.operateUrl,jdbcType=VARCHAR},
       </if>
@@ -241,7 +255,8 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update t_menu_button
-    set operate_url = #{record.operateUrl,jdbcType=VARCHAR},
+    set site_source = #{record.siteSource,jdbcType=VARCHAR},
+      operate_url = #{record.operateUrl,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       parent_code = #{record.parentCode,jdbcType=VARCHAR},
@@ -290,7 +305,8 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where operate_url = #{operateUrl,jdbcType=VARCHAR}
+    where site_source = #{siteSource,jdbcType=VARCHAR}
+      and operate_url = #{operateUrl,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jimas.weixin.skytrap.repository.entity.MenuButton" >
     update t_menu_button
@@ -304,6 +320,7 @@
       status = #{status,jdbcType=CHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where operate_url = #{operateUrl,jdbcType=VARCHAR}
+    where site_source = #{siteSource,jdbcType=VARCHAR}
+      and operate_url = #{operateUrl,jdbcType=VARCHAR}
   </update>
 </mapper>

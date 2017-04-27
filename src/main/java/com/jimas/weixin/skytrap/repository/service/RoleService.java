@@ -23,18 +23,17 @@ public class RoleService implements RoleApi {
     @Transactional(value = "appransactionManager")
     public boolean saveRole(Role role) {
         Assert.notNull(role);
+        Assert.notNull(role.getRoleId(),"roleId is required; it must not be null");
         int flag =0;
         Date now = new Date();
-        if(StringUtils.isEmpty(role.getRoleId())){//insert
+        Role roleDb = this.findById(role.getRoleId());
+        if(StringUtils.isEmpty(roleDb)){//insert
             role.setCreateTime(now);
             role.setUpdateTime(now);
             flag= mapper.insertSelective(role);
         }else{
-            Role roleDb = this.findById(role.getRoleId());
-            if(roleDb!=null){
-                role.setUpdateTime(now);
-                flag= mapper.updateByPrimaryKeySelective(role);
-            }
+            role.setUpdateTime(now);
+            flag= mapper.updateByPrimaryKeySelective(role);
         }
         return flag>0?true:false;
     }

@@ -8,7 +8,8 @@ public class MenuButtonReq extends BaseObject {
    
     //操作url 主键
     private String operateUrl;
-
+    //系统来源
+    private String siteSource;
     //菜单等级
     private Integer level;
 
@@ -48,6 +49,14 @@ public class MenuButtonReq extends BaseObject {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getSiteSource() {
+        return siteSource;
+    }
+
+    public void setSiteSource(String siteSource) {
+        this.siteSource = siteSource;
     }
     
     

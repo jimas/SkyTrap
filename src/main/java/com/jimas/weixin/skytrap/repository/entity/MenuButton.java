@@ -3,10 +3,7 @@ package com.jimas.weixin.skytrap.repository.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class MenuButton implements Serializable {
-    //操作url 主键
-    private String operateUrl;
-
+public class MenuButton extends MenuButtonKey implements Serializable {
     //
     private String code;
 
@@ -38,14 +35,6 @@ public class MenuButton implements Serializable {
     private Date updateTime;
 
     private static final long serialVersionUID = 1L;
-
-    public String getOperateUrl() {
-        return operateUrl;
-    }
-
-    public void setOperateUrl(String operateUrl) {
-        this.operateUrl = operateUrl == null ? null : operateUrl.trim();
-    }
 
     public String getCode() {
         return code;
@@ -133,7 +122,6 @@ public class MenuButton implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", operateUrl=").append(operateUrl);
         sb.append(", code=").append(code);
         sb.append(", name=").append(name);
         sb.append(", parentCode=").append(parentCode);

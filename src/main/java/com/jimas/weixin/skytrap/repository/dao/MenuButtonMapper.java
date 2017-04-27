@@ -2,6 +2,7 @@ package com.jimas.weixin.skytrap.repository.dao;
 
 import com.jimas.weixin.skytrap.repository.entity.MenuButton;
 import com.jimas.weixin.skytrap.repository.entity.MenuButtonCriteria;
+import com.jimas.weixin.skytrap.repository.entity.MenuButtonKey;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,7 +11,7 @@ public interface MenuButtonMapper {
 
     int deleteByExample(MenuButtonCriteria example);
 
-    int deleteByPrimaryKey(String operateUrl);
+    int deleteByPrimaryKey(MenuButtonKey key);
 
     int insert(MenuButton record);
 
@@ -18,7 +19,7 @@ public interface MenuButtonMapper {
 
     List<MenuButton> selectByExample(MenuButtonCriteria example);
 
-    MenuButton selectByPrimaryKey(String operateUrl);
+    MenuButton selectByPrimaryKey(MenuButtonKey key);
 
     int updateByExampleSelective(@Param("record") MenuButton record, @Param("example") MenuButtonCriteria example);
 

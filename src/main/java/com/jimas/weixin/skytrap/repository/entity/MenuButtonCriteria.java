@@ -125,6 +125,76 @@ public class MenuButtonCriteria {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andSiteSourceIsNull() {
+            addCriterion("site_source is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteSourceIsNotNull() {
+            addCriterion("site_source is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteSourceEqualTo(String value) {
+            addCriterion("site_source =", value, "siteSource");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteSourceNotEqualTo(String value) {
+            addCriterion("site_source <>", value, "siteSource");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteSourceGreaterThan(String value) {
+            addCriterion("site_source >", value, "siteSource");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteSourceGreaterThanOrEqualTo(String value) {
+            addCriterion("site_source >=", value, "siteSource");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteSourceLessThan(String value) {
+            addCriterion("site_source <", value, "siteSource");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteSourceLessThanOrEqualTo(String value) {
+            addCriterion("site_source <=", value, "siteSource");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteSourceLike(String value) {
+            addCriterion("site_source like", value, "siteSource");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteSourceNotLike(String value) {
+            addCriterion("site_source not like", value, "siteSource");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteSourceIn(List<String> values) {
+            addCriterion("site_source in", values, "siteSource");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteSourceNotIn(List<String> values) {
+            addCriterion("site_source not in", values, "siteSource");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteSourceBetween(String value1, String value2) {
+            addCriterion("site_source between", value1, value2, "siteSource");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteSourceNotBetween(String value1, String value2) {
+            addCriterion("site_source not between", value1, value2, "siteSource");
+            return (Criteria) this;
+        }
+
         public Criteria andOperateUrlIsNull() {
             addCriterion("operate_url is null");
             return (Criteria) this;
