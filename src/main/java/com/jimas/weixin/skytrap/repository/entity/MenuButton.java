@@ -16,6 +16,9 @@ public class MenuButton extends MenuButtonKey implements Serializable {
     //
     private String ancestorCode;
 
+    //菜单icon
+    private String icon;
+
     //菜单等级
     private Integer level;
 
@@ -66,6 +69,14 @@ public class MenuButton extends MenuButtonKey implements Serializable {
 
     public void setAncestorCode(String ancestorCode) {
         this.ancestorCode = ancestorCode == null ? null : ancestorCode.trim();
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon == null ? null : icon.trim();
     }
 
     public Integer getLevel() {
@@ -126,6 +137,7 @@ public class MenuButton extends MenuButtonKey implements Serializable {
         sb.append(", name=").append(name);
         sb.append(", parentCode=").append(parentCode);
         sb.append(", ancestorCode=").append(ancestorCode);
+        sb.append(", icon=").append(icon);
         sb.append(", level=").append(level);
         sb.append(", sortStr=").append(sortStr);
         sb.append(", type=").append(type);
