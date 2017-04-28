@@ -64,7 +64,7 @@
 	<div th:include="common/city/cityjs :: cityjs" th:remove="tag" />
 
 	<script th:inline="javascript">
-		
+		var basePath=[[@{/}]];
 		$(function(){
 			/*首尾增加这样的注释一样的声明，由于thymeleaf是采用xml解析的方式进行替换的，
 			 *所以javascript中<![CDATA[&]]>这样的xml实体转义字符会被识别为转义，所以会出sax解析错误
@@ -77,7 +77,7 @@
 				}
 // 				$('.trapTaskform').bootstrapValidator('validate');
 				var param = $('.trapTaskform').serialize();
-				$.post([[@{/}]]+'task/addTask',param,function(rs){
+				$.post(basePath+'task/addTask',param,function(rs){
 					/*<![CDATA[*/
 					if(rs && rs.status==200){
 					/*]]>*/
